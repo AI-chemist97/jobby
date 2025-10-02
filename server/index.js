@@ -1,9 +1,11 @@
 const express = require("express");
 const { textQuery } = require("./dialogflow/dialogflowClient");
+const cors = require("cors");
 
 const app = express();
 const PORT = 5000;
 
+app.use(cors());
 app.use(express.json()); //json 바디 읽기
 
 app.get("/", (req, res) => {
