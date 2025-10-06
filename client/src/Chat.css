@@ -1,0 +1,207 @@
+/* 전체 폰트 설정 (웹폰트가 없다면 시스템 폰트 사용) */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+
+.chat-container {
+  width: 100%;
+  max-width: 450px; /* 모바일 앱 느낌의 폭 */
+  margin: 40px auto;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  font-family: "Pretendard", sans-serif;
+  overflow: hidden; /* 자식 요소가 둥근 테두리를 넘지 않게 */
+  border: 1px solid #eef0f2;
+}
+
+/* --- 헤더 디자인 --- */
+.chat-header {
+  background: linear-gradient(
+    135deg,
+    #00b09b,
+    #96c93d
+  ); /* 화학 용액 느낌의 그라데이션 */
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+}
+
+.header-icon {
+  font-size: 24px;
+  background: rgba(255, 255, 255, 0.2);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: "Courier New", monospace; /* 코딩/데이터 느낌 */
+  letter-spacing: -0.5px;
+}
+
+.header-status {
+  font-size: 12px;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+/* --- 메시지 영역 --- */
+.messages-area {
+  height: 500px;
+  padding: 20px;
+  background-color: #f8f9fa; /* 눈이 편안한 연회색 배경 */
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 스크롤바 커스텀 */
+.messages-area::-webkit-scrollbar {
+  width: 6px;
+}
+.messages-area::-webkit-scrollbar-thumb {
+  background-color: #ddd;
+  border-radius: 3px;
+}
+
+.welcome-message {
+  text-align: center;
+  color: #868e96;
+  font-size: 14px;
+  margin-top: 40px;
+  line-height: 1.6;
+}
+
+/* --- 말풍선 공통 --- */
+.message-row {
+  display: flex;
+  width: 100%;
+}
+
+.message-bubble {
+  max-width: 75%;
+  padding: 12px 16px;
+  font-size: 15px;
+  line-height: 1.5;
+  position: relative;
+  word-break: break-word;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* 봇 메시지 스타일 */
+.message-row.bot {
+  justify-content: flex-start;
+}
+.message-row.bot .message-bubble {
+  background-color: #ffffff;
+  color: #333;
+  border-radius: 18px 18px 18px 4px; /* 왼쪽 아래 뾰족 */
+  border: 1px solid #e9ecef;
+}
+
+/* 사용자 메시지 스타일 */
+.message-row.user {
+  justify-content: flex-end;
+}
+.message-row.user .message-bubble {
+  background-color: #00b09b; /* 헤더와 매칭되는 틸 컬러 */
+  color: #ffffff;
+  border-radius: 18px 18px 4px 18px; /* 오른쪽 아래 뾰족 */
+}
+
+/* --- 입력창 영역 --- */
+.input-area {
+  padding: 16px;
+  background: #ffffff;
+  border-top: 1px solid #f1f3f5;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 24px;
+  border: 1px solid #dee2e6;
+  background: #f8f9fa;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.input-area input:focus {
+  border-color: #00b09b;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 176, 155, 0.1);
+}
+
+.input-area button {
+  background: none;
+  border: none;
+  color: #00b09b;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-area button:hover {
+  background-color: #e6fcf5;
+}
+
+.input-area button:disabled {
+  color: #adb5bd;
+  cursor: not-allowed;
+  background-color: transparent;
+}
+
+.send-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* --- 로딩 애니메이션 (점 세개 콩콩콩) --- */
+.message-bubble.loading {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 16px 20px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background-color: #adb5bd;
+  border-radius: 50%;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+.dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
