@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const { textQuery } = require("./dialogflow/dialogflowClient");
 const cors = require("cors");

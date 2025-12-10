@@ -1,9 +1,9 @@
 const dialogflow = require("@google-cloud/dialogflow");
 const uuid = require("uuid");
-const config = require("../config/dev");
 
-const projectId = config.googleProjectID;
-const sessionLanguageCode = config.dialogFlowSessionLanguageCode;
+// dev.js 대신 환경변수 사용
+const projectId = process.env.DIALOGFLOW_PROJECT_ID;
+const sessionLanguageCode = process.env.DIALOGFLOW_LANGUAGE_CODE || "ko";
 
 // 텍스트 질문을 Dialogflow에 보내고, 응답을 그대로 돌려주는 함수
 async function textQuery(userText, sessionId = uuid.v4()) {
@@ -11,8 +11,8 @@ async function textQuery(userText, sessionId = uuid.v4()) {
   const sessionClient = new dialogflow.SessionsClient({
     projectId,
     credentials: {
-      client_email: config.googleClientEmail,
-      private_key: config.googlePrivateKey,
+      client_email: process.env.DIALOGFLOW_CLIENT_EMAIL,
+      private_key: process.env.DIALOGFLOW_PRIVATE_KEY?.replace(/\\n/g, "\n"),
     },
   });
 
